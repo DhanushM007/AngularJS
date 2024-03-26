@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Calculate Factorial and Square</title>
+    <script src="lib.js"></script>
+    </head>
+
+    <body ng-app="myapp" ng-controller="mycntrl">
+        <h3>calculate factorial and square:</h3>
+
+        <input type="number" ng-model="inputnum">
+        <button ng-click="calculatefactorial()">Calculate Factorial</button>
+        <button ng-click="calculatesquare()">Calculate Square</button>
+        <br><br>
+        factorial:{{factorialresult}}
+        <br>
+        square:{{squareresult}}
+
+
+
+        <script>
+            var app=angular.module("myapp",[])
+            app.controller("mycntrl",function($scope)
+            {
+                $scope.calculatefactorial=function()
+                {
+                    if($scope.inputnum>=0)
+                    {
+                        $scope.factorialresult=factorial($scope.inputnum);
+                    }
+                    else
+                    {
+                        $scope.factorialresult="cannot calculate factorial for negative numbers";
+                    }
+                }
+                function factorial(n)
+                {
+                    if(n==0|n==1)
+                        return 1;
+                    else
+                        return n*factorial(n-1);
+                }
+
+
+                $scope.calculatesquare=function()
+                {
+                    $scope.squareresult=$scope.inputnum*$scope.inputnum;
+                    $scope.inputnum=""
+                }
+
+            })
+        </script>
+    </body>
+
+</html>

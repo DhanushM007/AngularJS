@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            To do List
+        </title>
+        <script src="lib.js"></script>
+    </head>
+
+    <body ng-app="myapp" ng-controller="mycntrl">
+
+        Enter new task:<input type="text" ng-model="newtask">
+        <button ng-click="addtask()">Add</button>
+
+        <table border="1">
+            <tr>
+                <th>Tasks</th>
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="x in tasks">
+                <td>{{x}}</td>
+                <td><button ng-click="deltask($index)">delete</button>
+                <button ng-click="edittask($index)">edit</button></td>
+            </tr>
+        </table>
+
+        <script>
+            var app=angular.module("myapp",[])
+            app.controller("mycntrl",function($scope)
+            {
+                    $scope.tasks=["task1","task2","task3"];
+
+                    $scope.addtask=function()
+                    {
+                        if($scope.newtask)
+                        {
+                            $scope.tasks.push($scope.newtask);
+                            $scope.newtask="";
+                        }
+                      
+                    }
+
+                    $scope.deltask=function(index)
+                    {
+                        var confirmdel=confirm("Are u sure?")
+                        if(confirmdel)
+                        {
+                            $scope.tasks.splice(index,1);
+                        }
+                    }
+                    $scope.edittask=function(index)
+                    {
+                        var updatedtask=prompt("enter updated task");
+                        if(updatedtask!=null)
+                        {
+                            $scope.tasks.splice(index,1,updatedtask);
+                        }
+                    }
+            })
+        </script>
+
+
+
+
+    </body>
+
+   
+</html>

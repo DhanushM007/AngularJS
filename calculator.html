@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <script src="lib.js"></script>
+    </head>
+    <body ng-app="myapp" ng-controller="mycntrl">
+        <label>Enter number 1:</label>
+        <input type="number" ng-model="num1">
+        
+        <label>Enter operator:</label>
+        <select ng-model="operator">
+            <option value="select">--select--</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+      
+        <label>Enter number 2:</label>
+        <input type="number" ng-model="num2">
+        
+    
+        <button ng-click="calculate()">calculate</button>
+        <br>
+        Result:{{result}}
+
+
+        <script>
+            var app=angular.module("myapp",[])
+            app.controller("mycntrl",function($scope)
+            {
+                $scope.calculate=function()
+                {
+                    switch($scope.operator)
+                    {
+                        case "+":$scope.result=$scope.num1+$scope.num2;
+                                break;
+
+                        case "-":$scope.result=$scope.num1-$scope.num2;
+                                break;
+
+                        case "*":$scope.result=$scope.num1*$scope.num2;
+                                break;
+
+                        case "/":
+                        if($scope.num2!==0)
+                        {
+                        $scope.result=$scope.num1/$scope.num2;
+                                break;
+                        }
+                        else
+                        {
+                            $scope.result="Cannot divide by zero";
+                        }
+                              
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

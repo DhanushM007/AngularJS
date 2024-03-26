@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Display full name</title>
+        <script src="lib.js"></script>
+    </head>
+
+    <body ng-app="myapp" ng-controller="mycntrl">
+        <h3>Display Full Name</h3>
+    enter fname:<input type="text" ng-model="fname">
+    <br><br>
+    enter lname:<input type="text" ng-model="lname">
+    <br><br>
+    <button ng-click="combine()">Display</button>
+
+    <h3>Fullname:{{fullname}}</h3>
+
+
+    <script>
+        var app=angular.module("myapp",[])
+        app.controller("mycntrl",function($scope)
+        {
+            $scope.fname;
+            $scope.lname;
+            $scope.fullname;
+            $scope.combine=function()
+            {
+                $scope.fullname=$scope.fname+" "+$scope.lname;
+            }
+
+
+        });
+    </script>
+
+
+
+    </body>
+</html>

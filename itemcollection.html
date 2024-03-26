@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Item collection</title>
+        <script src="lib.js"></script>
+    </head>
+
+    <body ng-app="myapp" ng-controller="mycntrl">
+        enter new item:
+        <input type="text" ng-model="newitem">
+
+        <button ng-click="additem()">add</button>
+
+
+        <li ng-repeat="x in items">{{x}}<button ng-click="delitem($index)">delete</button></li>
+
+        <p>Item count:{{items.length}}</p>
+        <script>
+            var app=angular.module("myapp",[])
+            app.controller("mycntrl",function($scope)
+            {
+                $scope.items=["item1","item2","item3"];
+
+                $scope.additem=function()
+                {
+                    if($scope.newitem)
+                    {
+                        $scope.items.push($scope.newitem);
+                        $scope.newitem="";
+                    }
+                }
+
+                $scope.delitem=function(index)
+                {
+                    $scope.items.splice(index,1)
+                }
+            });
+        </script>
+    </body>
+    
+</html>

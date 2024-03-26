@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Date Filters</title>
+        <script src="lib.js"></script>
+    </head>
+
+    <body ng-app="myapp" ng-controller="mycntrl">
+        
+        Default date:{{today|date}}<br>
+        Full date:{{today|date:"fullDate"}}<br>
+        short date:{{today|date:"shortDate"}}<br>
+        custom date:{{today|date:"dd-MM-yyyy"}}<br>
+
+    <script>
+        var app=angular.module("myapp",[])
+        app.controller("mycntrl",function($scope)
+        {
+            $scope.today=new Date();
+        })
+    </script>
+    </body>
+
+</html>

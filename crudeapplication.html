@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CRUD application</title>
+        <script src="lib.js"></script>
+    </head>
+
+    <body ng-app="myapp" ng-controller="mycntrl">
+        <h3>CRUD Application</h3>
+        Name:<input type="text" ng-model="name">
+        <br>
+        Age:<input type="number" ng-model="age">
+        <br>
+        Email:<input type="email" ng-model="email">
+        <br>
+        <button ng-click="adduser()">Add user</button>
+
+        <ul>
+            <li ng-repeat="x in users">
+                {{x.name}} {{x.age}} {{x.email}}
+            <button ng-click="deluser($index)">delete</button>
+            <button ng-click="edituser($index)">edit</button>
+            </li>
+        </ul>
+        
+        <script>
+            var app=angular.module("myapp",[])
+            app.controller("mycntrl",function($scope)
+            {
+                $scope.users=[
+                {name:"Dhanush",age:20,email:"dhanushmadhusudhan31@gmail.com"},
+                {name:"Dhanush",age:20,email:"dhanushmadhusudhan31@gmail.com"},
+                {name:"Dhanush",age:20,email:"dhanushmadhusudhan31@gmail.com"}
+                ];
+
+                $scope.adduser=function()
+                {
+                    if($scope.name && $scope.age && $scope.email)
+                    {
+                        $scope.users.push({name:$scope.name,age:$scope.age,email:$scope.email})
+                        $scope.name="";
+                        $scope.email="";
+                        $scope.age="";
+                    }
+                  
+                }
+
+                $scope.deluser=function(index)
+                {
+                    var confirmdel=confirm("are u sure?")
+                    if(confirmdel)
+                    {
+                        $scope.users.splice(index,1);
+                    }
+                }
+
+                $scope.edituser=function(index)
+                {
+                    var uname=prompt("enter updated name");
+                    var uage=prompt("enter updated age");
+                    var uemail=prompt("enter updated email");
+                    if(uname!=null && uage!=null && uemail!=null)
+                    var upall={name:uname,age:uage,email:uemail}
+                        $scope.users.splice(index,1,upall);  
+                    
+                }
+
+            })
+        </script>
+    </body>
+</html>
